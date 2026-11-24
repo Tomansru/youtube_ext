@@ -1,0 +1,26 @@
+html,
+body {
+  scrollbar-width: none;
+}
+
+/* YouTube sizes the video to fit this box. Allow a full-width landscape
+   frame, while keeping portrait videos within a standard theater canvas. */
+:root:not(:fullscreen) ytd-watch-flexy[theater][full-bleed-player]:not([fullscreen]) #full-bleed-container {
+  height: min(
+    56.25vw,
+    calc(100vw * var(--ytd-watch-flexy-height-ratio, 9) / var(--ytd-watch-flexy-width-ratio, 16))
+  ) !important;
+  max-height: none !important;
+}
+
+/* The main video can retain its previous inline size after a theater resize. */
+:root:not(:fullscreen) ytd-watch-flexy[theater][full-bleed-player]:not([fullscreen]) #player-full-bleed-container video.html5-main-video {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+:root:not(:fullscreen) ytd-watch-flexy[theater][full-bleed-player]:not([fullscreen]) #player-full-bleed-container .html5-video-container {
+  height: 100%;
+}
